@@ -1,0 +1,75 @@
+strict digraph {
+	graph [dpi=52]
+	EuropeanCountry
+	Country
+	EuropeanCountry -> Country [label="rdf-schema#subClassOf"]
+	Germany
+	Country
+	Germany -> Country [label="22-rdf-syntax-ns#type"]
+	hasCapital
+	Capital
+	hasCapital -> Capital [label="rdf-schema#range"]
+	Germany
+	Berlin
+	Germany -> Berlin [label=hasCapital]
+	France
+	"\"France\""
+	France -> "\"France\"" [label=hasName]
+	Germany
+	EuropeanCountry
+	Germany -> EuropeanCountry [label="22-rdf-syntax-ns#type"]
+	Spain
+	"\"Spain\""
+	Spain -> "\"Spain\"" [label=hasName]
+	France
+	Spain
+	France -> Spain [label=neighbours]
+	Netherlands
+	Amsterdam
+	Netherlands -> Amsterdam [label=hasCapital]
+	Netherlands
+	"\"The Netherlands\""
+	Netherlands -> "\"The Netherlands\"" [label=hasName]
+	Capital
+	City
+	Capital -> City [label="rdf-schema#subClassOf"]
+	Amsterdam
+	Capital
+	Amsterdam -> Capital [label="22-rdf-syntax-ns#type"]
+	Netherlands
+	Belgium
+	Netherlands -> Belgium [label=neighbours]
+	containsCity
+	City
+	containsCity -> City [label="rdf-schema#range"]
+	containsCity
+	Country
+	containsCity -> Country [label="rdf-schema#domain"]
+	hasCapital
+	containsCity
+	hasCapital -> containsCity [label="rdf-schema#subPropertyOf"]
+	Spain
+	Madrid
+	Spain -> Madrid [label=hasCapital]
+	Netherlands
+	Germany
+	Netherlands -> Germany [label=neighbours]
+	France
+	Paris
+	France -> Paris [label=hasCapital]
+	Germany
+	"\"Germany\""
+	Germany -> "\"Germany\"" [label=hasName]
+	Belgium
+	Country
+	Belgium -> Country [label="22-rdf-syntax-ns#type"]
+	Spain
+	Country
+	Spain -> Country [label="22-rdf-syntax-ns#type"]
+	France
+	Country
+	France -> Country [label="22-rdf-syntax-ns#type"]
+	Netherlands
+	Country
+	Netherlands -> Country [label="22-rdf-syntax-ns#type"]
+}
