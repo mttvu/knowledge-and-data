@@ -1,75 +1,159 @@
 strict digraph {
 	graph [dpi=52]
-	EuropeanCountry
-	Country
-	EuropeanCountry -> Country [label="rdf-schema#subClassOf"]
-	Germany
-	Country
-	Germany -> Country [label="22-rdf-syntax-ns#type"]
-	hasCapital
-	Capital
-	hasCapital -> Capital [label="rdf-schema#range"]
-	Germany
-	Berlin
-	Germany -> Berlin [label=hasCapital]
-	France
-	"\"France\""
-	France -> "\"France\"" [label=hasName]
-	Germany
-	EuropeanCountry
-	Germany -> EuropeanCountry [label="22-rdf-syntax-ns#type"]
-	Spain
-	"\"Spain\""
-	Spain -> "\"Spain\"" [label=hasName]
-	France
-	Spain
-	France -> Spain [label=neighbours]
-	Netherlands
-	Amsterdam
-	Netherlands -> Amsterdam [label=hasCapital]
-	Netherlands
-	"\"The Netherlands\""
-	Netherlands -> "\"The Netherlands\"" [label=hasName]
-	Capital
-	City
-	Capital -> City [label="rdf-schema#subClassOf"]
-	Amsterdam
-	Capital
-	Amsterdam -> Capital [label="22-rdf-syntax-ns#type"]
-	Netherlands
-	Belgium
-	Netherlands -> Belgium [label=neighbours]
 	containsCity
 	City
 	containsCity -> City [label="rdf-schema#range"]
-	containsCity
-	Country
-	containsCity -> Country [label="rdf-schema#domain"]
-	hasCapital
-	containsCity
-	hasCapital -> containsCity [label="rdf-schema#subPropertyOf"]
-	Spain
-	Madrid
-	Spain -> Madrid [label=hasCapital]
-	Netherlands
-	Germany
-	Netherlands -> Germany [label=neighbours]
 	France
 	Paris
 	France -> Paris [label=hasCapital]
-	Germany
-	"\"Germany\""
-	Germany -> "\"Germany\"" [label=hasName]
+	hasCapital
+	containsCity
+	hasCapital -> containsCity [label="rdf-schema#subPropertyOf"]
+	hasCapital
+	Capital
+	hasCapital -> Capital [label="rdf-schema#range"]
+	Portugal
+	Lisbon
+	Portugal -> Lisbon [label=hasCapital]
+	Spain
+	Portugal
+	Spain -> Portugal [label=neighbours]
 	Belgium
 	Country
 	Belgium -> Country [label="22-rdf-syntax-ns#type"]
 	Spain
+	"\"Spain\""
+	Spain -> "\"Spain\"" [label=hasName]
+	Portugal
+	"\"Portugal\""
+	Portugal -> "\"Portugal\"" [label=hasName]
+	EuropeanCountry
 	Country
-	Spain -> Country [label="22-rdf-syntax-ns#type"]
+	EuropeanCountry -> Country [label="rdf-schema#subClassOf"]
+	Germany
+	EuropeanCountry
+	Germany -> EuropeanCountry [label="22-rdf-syntax-ns#type"]
+	Netherlands
+	Amsterdam
+	Netherlands -> Amsterdam [label=hasCapital]
+	France
+	Spain
+	France -> Spain [label=neighbours]
+	Netherlands
+	"\"The Netherlands\""
+	Netherlands -> "\"The Netherlands\"" [label=hasName]
+	Netherlands
+	Germany
+	Netherlands -> Germany [label=neighbours]
+	Netherlands
+	Belgium
+	Netherlands -> Belgium [label=neighbours]
 	France
 	Country
 	France -> Country [label="22-rdf-syntax-ns#type"]
+	Capital
+	City
+	Capital -> City [label="rdf-schema#subClassOf"]
+	Spain
+	Country
+	Spain -> Country [label="22-rdf-syntax-ns#type"]
+	Spain
+	Madrid
+	Spain -> Madrid [label=hasCapital]
+	Amsterdam
+	Capital
+	Amsterdam -> Capital [label="22-rdf-syntax-ns#type"]
 	Netherlands
 	Country
 	Netherlands -> Country [label="22-rdf-syntax-ns#type"]
+	Belgium
+	Germany
+	Belgium -> Germany [label=neighbours]
+	containsCity
+	Country
+	containsCity -> Country [label="rdf-schema#domain"]
+	France
+	"\"France\""
+	France -> "\"France\"" [label=hasName]
+	Portugal
+	Country
+	Portugal -> Country [label="22-rdf-syntax-ns#type"]
+	containsCity [color=purple]
+	City [color=yellow]
+	containsCity -> City [label="rdf-schema#range" color=pink]
+	France [color=blue]
+	Paris [color=blue]
+	France -> Paris [label=hasCapital color=green]
+	hasCapital
+	containsCity
+	hasCapital -> containsCity [label="rdf-schema#subPropertyOf"]
+	hasCapital [color=purple]
+	Capital [color=yellow]
+	hasCapital -> Capital [label="rdf-schema#range" color=pink]
+	Portugal [color=blue]
+	Lisbon [color=blue]
+	Portugal -> Lisbon [label=hasCapital color=green]
+	Spain [color=blue]
+	Portugal [color=blue]
+	Spain -> Portugal [label=neighbours color=green]
+	Belgium [color=blue]
+	Country [color=yellow]
+	Belgium -> Country [label="22-rdf-syntax-ns#type" color=pink]
+	Spain [color=blue]
+	"\"Spain\"" [color=red]
+	Spain -> "\"Spain\"" [label=hasName color=green]
+	Portugal [color=blue]
+	"\"Portugal\"" [color=red]
+	Portugal -> "\"Portugal\"" [label=hasName color=green]
+	EuropeanCountry [color=yellow]
+	Country [color=yellow]
+	EuropeanCountry -> Country [label="rdf-schema#subClassOf" color=pink]
+	Germany [color=blue]
+	EuropeanCountry [color=yellow]
+	Germany -> EuropeanCountry [label="22-rdf-syntax-ns#type" color=pink]
+	Netherlands [color=blue]
+	Amsterdam [color=blue]
+	Netherlands -> Amsterdam [label=hasCapital color=green]
+	France [color=blue]
+	Spain [color=blue]
+	France -> Spain [label=neighbours color=green]
+	Netherlands [color=blue]
+	"\"The Netherlands\"" [color=red]
+	Netherlands -> "\"The Netherlands\"" [label=hasName color=green]
+	Netherlands [color=blue]
+	Germany [color=blue]
+	Netherlands -> Germany [label=neighbours color=green]
+	Netherlands [color=blue]
+	Belgium [color=blue]
+	Netherlands -> Belgium [label=neighbours color=green]
+	France [color=blue]
+	Country [color=yellow]
+	France -> Country [label="22-rdf-syntax-ns#type" color=pink]
+	Capital [color=yellow]
+	City [color=yellow]
+	Capital -> City [label="rdf-schema#subClassOf" color=pink]
+	Spain [color=blue]
+	Country [color=yellow]
+	Spain -> Country [label="22-rdf-syntax-ns#type" color=pink]
+	Spain [color=blue]
+	Madrid [color=blue]
+	Spain -> Madrid [label=hasCapital color=green]
+	Amsterdam [color=blue]
+	Capital [color=yellow]
+	Amsterdam -> Capital [label="22-rdf-syntax-ns#type" color=pink]
+	Netherlands [color=blue]
+	Country [color=yellow]
+	Netherlands -> Country [label="22-rdf-syntax-ns#type" color=pink]
+	Belgium [color=blue]
+	Germany [color=blue]
+	Belgium -> Germany [label=neighbours color=green]
+	containsCity [color=purple]
+	Country [color=yellow]
+	containsCity -> Country [label="rdf-schema#domain" color=pink]
+	France [color=blue]
+	"\"France\"" [color=red]
+	France -> "\"France\"" [label=hasName color=green]
+	Portugal [color=blue]
+	Country [color=yellow]
+	Portugal -> Country [label="22-rdf-syntax-ns#type" color=pink]
 }

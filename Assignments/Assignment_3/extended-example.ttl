@@ -1,0 +1,45 @@
+@prefix ns1: <http://example.com/kad/> .
+@prefix ns2: <http://dbpedia.org/ontology/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ns1:Netherlands a ns1:Country ;
+    ns1:contains ns1:Ijsselmeer ;
+    ns1:containsCity ns1:Rotterdam ;
+    ns1:hasCapital ns1:Amsterdam ;
+    ns1:hasName "The Netherlands" ;
+    ns1:neighbours ns1:Belgium .
+
+ns1:hasCapital rdfs:range ns1:Capital ;
+    rdfs:subPropertyOf ns1:containsCity .
+
+ns1:neighbours rdfs:subPropertyOf ns1:closeBy .
+
+ns1:Amsterdam a ns1:Capital ;
+    ns2:populationTotal "872680"^^xsd:nonNegativeInteger ;
+    ns1:closeBy ns1:Germany .
+
+ns1:Belgium a ns1:Country .
+
+ns1:Berlin ns2:populationTotal "3769495"^^xsd:nonNegativeInteger .
+
+ns1:EuropeanCountry rdfs:subClassOf ns1:Country .
+
+ns1:Germany a ns1:EuropeanCountry ;
+    ns1:hasCapital ns1:Berlin .
+
+ns1:Rotterdam ns2:populationTotal "651157"^^xsd:nonNegativeInteger .
+
+ns1:closeBy rdfs:domain ns1:Location ;
+    rdfs:range ns1:Location .
+
+ns1:containsCity rdfs:domain ns1:Country ;
+    rdfs:range ns1:City ;
+    rdfs:subPropertyOf ns1:contains .
+
+ns1:Capital rdfs:subClassOf ns1:City .
+
+ns1:City rdfs:subClassOf ns1:Location .
+
+ns1:Country rdfs:subClassOf ns1:Location .
+

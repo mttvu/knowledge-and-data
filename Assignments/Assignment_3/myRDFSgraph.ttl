@@ -1,0 +1,62 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ex: <http://example.com/kad/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ex:Book a rdfs:Class ;
+        rdfs:label "Book" .
+
+ex:Author a rdfs:Class ;
+          rdfs:subClassOf ex:Person ;
+          rdfs:label "Author" .
+
+ex:Genre a rdfs:Class ;
+         rdfs:label "Genre" .
+
+ex:Publisher a rdfs:Class ; 
+             rdfs:label "Publisher" .
+
+
+ex:hasName a rdf:Property ;
+           rdfs:range xsd:string .
+
+ex:hasAuthor a rdf:Property ;
+             rdfs:subPropertyOf ex:hasDetail ;
+             rdfs:range ex:Author ;
+             rdfs:domain ex:Book .
+
+ex:hasTitle a rdf:Property ;
+             rdfs:subPropertyOf ex:hasDetail ;
+             rdfs:range xsd:string ;
+             rdfs:domain ex:Book .
+
+ex:hasPublisher a rdf:Property ;
+             rdfs:subPropertyOf ex:hasDetail ;
+             rdfs:range ex:Publisher ;
+             rdfs:domain ex:Book .
+
+ex:publishedOn a rdf:Property ;
+             rdfs:subPropertyOf ex:hasDetail ;
+             rdfs:range xsd:date ;
+             rdfs:domain ex:Book .
+
+ex:hasGenre a rdf:Property ;
+            rdfs:subPropertyOf ex:hasDetail ;
+            rdfs:range ex:Genre ;
+            rdfs:domain ex:Book .
+
+ex:The_Travelling_Cat_Chronicles    a ex:Book ;
+                                    ex:hasTitle "The Traveling Cat Chronicles" ;
+                                    ex:hasAuthor ex:Hiro_Arikawa ;
+                                    ex:hasGenre ex:Fiction ;
+                                    ex:hasPublisher ex:Viking ;
+                                    ex:publishedOn "2012-11-01"^^xsd:date .
+
+ex:Hiro_Arikawa a ex:Author;
+                ex:hasName "Hiro Arikawa" .
+
+ex:Fiction a ex:Genre;
+           ex:hasName "Fiction" .
+
+ex:Viking a ex:Publisher ;
+          ex:hasName "Viking" .
