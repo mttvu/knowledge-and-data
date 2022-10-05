@@ -1,0 +1,217 @@
+@prefix : <http://www.example.com/books#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix books: <http://www.example.com/books> .
+@base <http://www.example.com/books> .
+
+<http://www.example.com/books> rdf:type owl:Ontology ;
+                                rdfs:comment """Description: an ontology about books
+Target audience: readers"""@en ;
+                                rdfs:isDefinedBy "?"@en ;
+                                rdfs:label "Books"@en .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.example.com/books#genreOf
+:genreOf rdf:type owl:ObjectProperty ;
+         rdfs:subPropertyOf owl:topObjectProperty .
+
+
+###  http://www.example.com/books#hasAuthor
+:hasAuthor rdf:type owl:ObjectProperty ,
+                    owl:AsymmetricProperty ,
+                    owl:IrreflexiveProperty ;
+           owl:propertyDisjointWith :hasWritten .
+
+
+###  http://www.example.com/books#hasCitizen
+:hasCitizen rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf owl:topObjectProperty .
+
+
+###  http://www.example.com/books#hasGenre
+:hasGenre rdf:type owl:ObjectProperty .
+
+
+###  http://www.example.com/books#hasPublished
+:hasPublished rdf:type owl:ObjectProperty .
+
+
+###  http://www.example.com/books#hasRead
+:hasRead rdf:type owl:ObjectProperty .
+
+
+###  http://www.example.com/books#hasWritten
+:hasWritten rdf:type owl:ObjectProperty .
+
+
+###  http://www.example.com/books#isLocatedIn
+:isLocatedIn rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf owl:topObjectProperty .
+
+
+###  http://www.example.com/books#worksWIth
+:worksWIth rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf owl:topObjectProperty ;
+           owl:propertyChainAxiom ( :hasPublished
+                                    :hasAuthor
+                                  ) .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.example.com/books#hasDateOfBirth
+:hasDateOfBirth rdf:type owl:DatatypeProperty ;
+                rdfs:subPropertyOf owl:topDataProperty .
+
+
+###  http://www.example.com/books#hasName
+:hasName rdf:type owl:DatatypeProperty .
+
+
+###  http://www.example.com/books#hasNumberOfPages
+:hasNumberOfPages rdf:type owl:DatatypeProperty .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.example.com/books#Author
+:Author rdf:type owl:Class ;
+        owl:equivalentClass [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasWritten ;
+                              owl:someValuesFrom :Book
+                            ] ;
+        rdfs:subClassOf :Person ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :isLocatedIn ;
+                          owl:someValuesFrom :Location
+                        ] .
+
+
+###  http://www.example.com/books#Book
+:Book rdf:type owl:Class ;
+      owl:equivalentClass [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasAuthor ;
+                            owl:someValuesFrom :Author
+                          ] ;
+      rdfs:subClassOf [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasGenre ;
+                        owl:someValuesFrom :Genre
+                      ] .
+
+
+###  http://www.example.com/books#Genre
+:Genre rdf:type owl:Class .
+
+
+###  http://www.example.com/books#Location
+:Location rdf:type owl:Class .
+
+
+###  http://www.example.com/books#Person
+:Person rdf:type owl:Class .
+
+
+###  http://www.example.com/books#Publisher
+:Publisher rdf:type owl:Class .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.example.com/books#Alice
+:Alice rdf:type owl:NamedIndividual ,
+                :Person ;
+       :hasRead :BeforeTheCoffeeGetsCold ;
+       :hasDateOfBirth "1998-05-23T21:32:52"^^xsd:dateTime ;
+       :hasName "Alice" .
+
+
+###  http://www.example.com/books#BeforeTheCoffeeGetsCold
+:BeforeTheCoffeeGetsCold rdf:type owl:NamedIndividual ;
+                         :hasAuthor :ToshikazuKawaguchi ;
+                         :hasName "Before the Coffee Gets Cold" ;
+                         :hasNumberOfPages 213 .
+
+
+###  http://www.example.com/books#Bob
+:Bob rdf:type owl:NamedIndividual ;
+     :hasRead :Circe ;
+     :hasDateOfBirth "2001-10-26T21:32:52"^^xsd:dateTime ;
+     :hasName "Bob" .
+
+
+###  http://www.example.com/books#Circe
+:Circe rdf:type owl:NamedIndividual ,
+                :Book ;
+       :hasGenre :Mythology ;
+       :hasName "Circe" ;
+       :hasNumberOfPages 393 .
+
+
+###  http://www.example.com/books#Japan
+:Japan rdf:type owl:NamedIndividual ,
+                :Location ;
+       :hasCitizen :ToshikazuKawaguchi ;
+       :hasName "Japan" .
+
+
+###  http://www.example.com/books#LittleBrownAndCompany
+:LittleBrownAndCompany rdf:type owl:NamedIndividual ,
+                                :Publisher ;
+                       :hasPublished :Circe ;
+                       :isLocatedIn :TheUnitedStates ;
+                       :hasName "Little, Brown and Company" .
+
+
+###  http://www.example.com/books#MadelineMiller
+:MadelineMiller rdf:type owl:NamedIndividual ;
+                :hasWritten :Circe ;
+                :isLocatedIn :TheUnitedStates ;
+                :hasName "Madeline Miller" .
+
+
+###  http://www.example.com/books#MagicalRealism
+:MagicalRealism rdf:type owl:NamedIndividual ,
+                         :Genre ;
+                :genreOf :BeforeTheCoffeeGetsCold ;
+                :hasName "Magical Realism" .
+
+
+###  http://www.example.com/books#Mythology
+:Mythology rdf:type owl:NamedIndividual ;
+           :genreOf :Circe ;
+           :hasName "Mythology" .
+
+
+###  http://www.example.com/books#Picador
+:Picador rdf:type owl:NamedIndividual ;
+         :hasPublished :BeforeTheCoffeeGetsCold ;
+         :hasName "Picador" .
+
+
+###  http://www.example.com/books#TheUnitedStates
+:TheUnitedStates rdf:type owl:NamedIndividual ;
+                 :hasCitizen :Bob ;
+                 :hasName "The United States" .
+
+
+###  http://www.example.com/books#ToshikazuKawaguchi
+:ToshikazuKawaguchi rdf:type owl:NamedIndividual ,
+                             :Author ;
+                    :hasWritten :BeforeTheCoffeeGetsCold ;
+                    :isLocatedIn :Japan ;
+                    :hasName "Toshikazu Kawaguchi" .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
